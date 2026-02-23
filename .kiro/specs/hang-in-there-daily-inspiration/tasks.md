@@ -9,7 +9,7 @@ The implementation follows a staged approach: core reading experience first, the
 ## Tasks
 
 - [ ] 1. Project setup and infrastructure
-  - [ ] 1.1 Initialize Next.js 14 project with TypeScript and Tailwind CSS
+  - [-] 1.1 Initialize Next.js 14 project with TypeScript and Tailwind CSS
     - Create Next.js app with App Router
     - Configure TypeScript with strict mode
     - Set up Tailwind CSS with custom theme (warm colors: soft blues, creams, earthy greens)

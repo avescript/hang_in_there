@@ -1,0 +1,50 @@
+{
+  "name": "hang-in-there",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avescript/hang_in_there.git"
+  },
+  "keywords": [
+    "inspiration",
+    "stories",
+    "resilience",
+    "pwa",
+    "nextjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/avescript/hang_in_there/issues"
+  },
+  "homepage": "https://github.com/avescript/hang_in_there#readme",
+  "description": "Daily stories of grit, grace, and human connection",
+  "dependencies": {
+    "next": "^14.2.35",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "^16.1.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "postcss": "^8.5.6",
+    "prettier": "^3.8.1",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.9.3"
+  }
+}
