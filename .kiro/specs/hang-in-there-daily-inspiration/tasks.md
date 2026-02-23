@@ -23,14 +23,14 @@ The implementation follows a staged approach: core reading experience first, the
     - Create database migration scripts
     - _Requirements: 7.2, 7.5_
 
-  - [-] 1.3 Configure Strapi CMS
+  - [x] 1.3 Configure Strapi CMS
     - Install and configure Strapi 4
     - Create Story content type with all fields (headline, narrative, subjectName, subjectIdentifier, theme, sourceUrl, sourceAttribution, publishDate, scheduledDate, status, featuredImage, commentsEnabled)
     - Set up media library for featured images
     - Configure PostgreSQL connection for Strapi
     - _Requirements: 7.2, 6.1_
 
-  - [ ] 1.4 Set up NextAuth.js authentication
+  - [-] 1.4 Set up NextAuth.js authentication
     - Install and configure NextAuth.js 4
     - Implement email/password provider
     - Implement OAuth providers (Google, Apple)
