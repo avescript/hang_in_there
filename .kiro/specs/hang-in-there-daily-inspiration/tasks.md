@@ -8,7 +8,7 @@ The implementation follows a staged approach: core reading experience first, the
 
 ## Tasks
 
-- [ ] 1. Project setup and infrastructure
+- [x] 1. Project setup and infrastructure
   - [x] 1.1 Initialize Next.js 14 project with TypeScript and Tailwind CSS
     - Create Next.js app with App Router
     - Configure TypeScript with strict mode
@@ -38,7 +38,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Create authentication API routes
     - _Requirements: 5.4.1, 7.2_
 
-  - [-] 1.5 Configure PWA manifest and service worker
+  - [x] 1.5 Configure PWA manifest and service worker
     - Create PWA manifest with app metadata
     - Implement service worker for offline story caching
     - Configure next-pwa plugin

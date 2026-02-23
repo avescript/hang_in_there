@@ -19,7 +19,6 @@
     "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^3.0.3",
     "next-auth": "^4.24.13",
-    "next-pwa": "^5.6.0",
     "pg": "^8.18.0"
   },
   "engines": {
@@ -28,5 +27,8 @@
   },
   "strapi": {
     "uuid": "hang-in-there-cms"
+  },
+  "devDependencies": {
+    "next-pwa": "^5.6.0"
   }
 }
