@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#F5F5DC" rx="76.8"/>
+  
+  <!-- Decorative circle -->
+  <circle cx="256" cy="256" r="179.2" fill="#6B9AC4" opacity="0.2"/>
+  
+  <!-- Cat silhouette (simplified) -->
+  <g transform="translate(256, 256)">
+    <!-- Body -->
+    <ellipse cx="0" cy="25.6" rx="76.8" ry="102.4" fill="#6B9AC4"/>
+    <!-- Head -->
+    <circle cx="0" cy="-76.8" r="61.44" fill="#6B9AC4"/>
+    <!-- Ears -->
+    <path d="M -40.96 -112.64 L -61.44 -143.36 L -25.6 -102.4 Z" fill="#6B9AC4"/>
+    <path d="M 40.96 -112.64 L 61.44 -143.36 L 25.6 -102.4 Z" fill="#6B9AC4"/>
+    <!-- Paws hanging -->
+    <ellipse cx="-40.96" cy="128" rx="20.48" ry="30.72" fill="#6B9AC4"/>
+    <ellipse cx="40.96" cy="128" rx="20.48" ry="30.72" fill="#6B9AC4"/>
+  </g>
+  
+  <!-- Text "HIT" (Hang In There) -->
+  <text x="256" y="435.2" font-family="Arial, sans-serif" font-size="61.44" font-weight="bold" fill="#333333" text-anchor="middle">HIT</text>
+</svg>
