@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stories",
+  "info": {
+    "singularName": "story",
+    "pluralName": "stories",
+    "displayName": "Story",
+    "description": "Daily inspiration stories"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "headline": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "narrative": {
+      "type": "text",
+      "required": true
+    },
+    "subjectName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "subjectIdentifier": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": ["grit", "love", "community", "environment", "balance", "care"],
+      "required": true
+    },
+    "sourceUrl": {
+      "type": "string",
+      "required": true
+    },
+    "sourceAttribution": {
+      "type": "string",
+      "required": true
+    },
+    "publishDate": {
+      "type": "datetime"
+    },
+    "scheduledDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "scheduled", "published"],
+      "default": "draft",
+      "required": true
+    },
+    "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "commentsEnabled": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}
