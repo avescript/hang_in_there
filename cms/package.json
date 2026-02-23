@@ -12,9 +12,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@auth/pg-adapter": "^1.11.1",
     "@strapi/plugin-i18n": "^4.26.1",
     "@strapi/plugin-users-permissions": "^4.26.1",
     "@strapi/strapi": "^4.26.1",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.3",
+    "next-auth": "^4.24.13",
     "pg": "^8.18.0"
   },
   "engines": {

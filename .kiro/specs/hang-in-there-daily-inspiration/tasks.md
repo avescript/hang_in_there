@@ -30,7 +30,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Configure PostgreSQL connection for Strapi
     - _Requirements: 7.2, 6.1_
 
-  - [-] 1.4 Set up NextAuth.js authentication
+  - [x] 1.4 Set up NextAuth.js authentication
     - Install and configure NextAuth.js 4
     - Implement email/password provider
     - Implement OAuth providers (Google, Apple)
@@ -38,7 +38,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Create authentication API routes
     - _Requirements: 5.4.1, 7.2_
 
-  - [ ] 1.5 Configure PWA manifest and service worker
+  - [-] 1.5 Configure PWA manifest and service worker
     - Create PWA manifest with app metadata
     - Implement service worker for offline story caching
     - Configure next-pwa plugin
