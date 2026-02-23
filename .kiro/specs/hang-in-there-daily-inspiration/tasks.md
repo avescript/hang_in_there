@@ -9,14 +9,14 @@ The implementation follows a staged approach: core reading experience first, the
 ## Tasks
 
 - [ ] 1. Project setup and infrastructure
-  - [-] 1.1 Initialize Next.js 14 project with TypeScript and Tailwind CSS
+  - [x] 1.1 Initialize Next.js 14 project with TypeScript and Tailwind CSS
     - Create Next.js app with App Router
     - Configure TypeScript with strict mode
     - Set up Tailwind CSS with custom theme (warm colors: soft blues, creams, earthy greens)
     - Configure ESLint and Prettier
     - _Requirements: 7.2, 8.1_
 
-  - [ ] 1.2 Set up PostgreSQL database and schema
+  - [-] 1.2 Set up PostgreSQL database and schema
     - Create PostgreSQL database
     - Implement all database tables from design (users, accounts, sessions, verification_tokens, user_settings, saved_stories, reading_streaks, story_reads, reactions, comments, comment_flags, push_subscriptions, donations)
     - Add indexes for performance
@@ -58,7 +58,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Ensure responsive layout (mobile, tablet, desktop)
     - _Requirements: 5.1.1, 5.1.2, 5.1.3, 5.1.4, 5.1.5, 5.1.6, 5.1.7_
 
-  - [ ]* 2.3 Write property test for Story Card Completeness
+  - [ ]\* 2.3 Write property test for Story Card Completeness
     - **Property 1: Story Card Completeness**
     - **Validates: Requirements 5.1.1-5.1.6**
     - Test that all required fields render for any published story
@@ -79,7 +79,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Handle case where no story is scheduled
     - _Requirements: 5.2.1, 5.2.2_
 
-  - [ ]* 2.6 Write property test for Daily Story Consistency
+  - [ ]\* 2.6 Write property test for Daily Story Consistency
     - **Property 2: Daily Story Consistency**
     - **Validates: Requirements 5.2.3**
     - Test that all users get the same daily story for a given date
@@ -116,7 +116,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Validate settings input (time format, theme values)
     - _Requirements: 5.4.4_
 
-  - [ ]* 4.4 Write property test for User Settings Round-Trip
+  - [ ]\* 4.4 Write property test for User Settings Round-Trip
     - **Property 3: User Settings Round-Trip**
     - **Validates: Requirements 5.2.2, 5.4.4**
     - Test that saving and retrieving settings returns equivalent object
@@ -129,13 +129,13 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement filter and search within saved stories
     - _Requirements: 5.1.8, 5.4.3_
 
-  - [ ]* 4.6 Write property test for Saved Stories Round-Trip
+  - [ ]\* 4.6 Write property test for Saved Stories Round-Trip
     - **Property 6: Saved Stories Round-Trip**
     - **Validates: Requirements 5.4.3**
     - Test that saved stories persist in user archive until unsaved
     - _Requirements: 5.4.3_
 
-  - [ ]* 4.7 Write property test for Guest Access to Stories
+  - [ ]\* 4.7 Write property test for Guest Access to Stories
     - **Property 5: Guest Access to Stories**
     - **Validates: Requirements 5.4.1**
     - Test that unauthenticated users can read full story content
@@ -149,7 +149,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Display streak counter in UI (optional visibility)
     - _Requirements: 5.4.6_
 
-  - [ ]* 4.9 Write property test for Reading Streak Calculation
+  - [ ]\* 4.9 Write property test for Reading Streak Calculation
     - **Property 7: Reading Streak Calculation**
     - **Validates: Requirements 5.4.6**
     - Test that streak equals consecutive days of reading ending with today
@@ -172,31 +172,31 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement random story selection
     - _Requirements: 5.5.1, 5.5.2, 5.5.4_
 
-  - [ ]* 5.3 Write property test for Theme Filter Accuracy
+  - [ ]\* 5.3 Write property test for Theme Filter Accuracy
     - **Property 8: Theme Filter Accuracy**
     - **Validates: Requirements 5.4.5**
     - Test that filtered results only include stories with specified theme
     - _Requirements: 5.4.5_
 
-  - [ ]* 5.4 Write property test for Archive Accessibility
+  - [ ]\* 5.4 Write property test for Archive Accessibility
     - **Property 9: Archive Accessibility**
     - **Validates: Requirements 5.5.1**
     - Test that all published stories are retrievable from archive
     - _Requirements: 5.5.1_
 
-  - [ ]* 5.5 Write property test for Search Result Relevance
+  - [ ]\* 5.5 Write property test for Search Result Relevance
     - **Property 10: Search Result Relevance**
     - **Validates: Requirements 5.5.2**
     - Test that search results match criteria and are ordered correctly
     - _Requirements: 5.5.2_
 
-  - [ ]* 5.6 Write property test for Pagination Consistency
+  - [ ]\* 5.6 Write property test for Pagination Consistency
     - **Property 11: Pagination Consistency**
     - **Validates: Requirements 5.5.3**
     - Test that same page returns same stories in same order
     - _Requirements: 5.5.3_
 
-  - [ ]* 5.7 Write property test for Random Story Variability
+  - [ ]\* 5.7 Write property test for Random Story Variability
     - **Property 12: Random Story Variability**
     - **Validates: Requirements 5.5.4**
     - Test that random story probability is less than 1/N for consecutive requests
@@ -227,7 +227,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Handle failed deliveries
     - _Requirements: 5.2.1, 5.3.2_
 
-  - [ ]* 7.4 Write property test for Notification Rate Limiting
+  - [ ]\* 7.4 Write property test for Notification Rate Limiting
     - **Property 4: Notification Rate Limiting**
     - **Validates: Requirements 5.3.3**
     - Test that users never receive more than one notification per 24 hours
@@ -242,7 +242,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement optimistic UI updates
     - _Requirements: 5.6.1, 5.6.2_
 
-  - [ ]* 8.2 Write property test for Reaction Uniqueness
+  - [ ]\* 8.2 Write property test for Reaction Uniqueness
     - **Property 13: Reaction Uniqueness**
     - **Validates: Requirements 5.6.1, 5.6.2**
     - Test that users can have at most one reaction per type per story
@@ -256,13 +256,13 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement comment pagination (20 per page)
     - _Requirements: 5.6.3, 5.6.4, 5.6.7_
 
-  - [ ]* 8.4 Write property test for Comment Authentication Requirement
+  - [ ]\* 8.4 Write property test for Comment Authentication Requirement
     - **Property 14: Comment Authentication Requirement**
     - **Validates: Requirements 5.6.3**
     - Test that unauthenticated users cannot post comments
     - _Requirements: 5.6.3_
 
-  - [ ]* 8.5 Write property test for Comment Threading Depth Limit
+  - [ ]\* 8.5 Write property test for Comment Threading Depth Limit
     - **Property 17: Comment Threading Depth Limit**
     - **Validates: Requirements 5.6.7**
     - Test that comments cannot be nested beyond depth 2
@@ -276,13 +276,13 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement DELETE /api/comments/:id endpoint for moderators
     - _Requirements: 5.6.5, 5.6.6_
 
-  - [ ]* 8.7 Write property test for Comment Content Filtering
+  - [ ]\* 8.7 Write property test for Comment Content Filtering
     - **Property 15: Comment Content Filtering**
     - **Validates: Requirements 5.6.5**
     - Test that comments with prohibited content are rejected
     - _Requirements: 5.6.5_
 
-  - [ ]* 8.8 Write property test for Flagged Comment Visibility
+  - [ ]\* 8.8 Write property test for Flagged Comment Visibility
     - **Property 16: Flagged Comment Visibility**
     - **Validates: Requirements 5.6.6**
     - Test that flagged comments are hidden from non-moderators
@@ -297,13 +297,13 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement keyboard controls (Space, Arrow keys)
     - _Requirements: 5.10.1, 5.10.2, 5.10.3, 5.10.4_
 
-  - [ ]* 9.2 Write property test for Audio Player Availability
+  - [ ]\* 9.2 Write property test for Audio Player Availability
     - **Property 26: Audio Player Availability**
     - **Validates: Requirements 5.10.1, 5.10.2**
     - Test that audio player is present and functional on all story pages
     - _Requirements: 5.10.1, 5.10.2_
 
-  - [ ]* 9.3 Write property test for Audio Playback Speed Control
+  - [ ]\* 9.3 Write property test for Audio Playback Speed Control
     - **Property 27: Audio Playback Speed Control**
     - **Validates: Requirements 5.10.3**
     - Test that all playback speeds work correctly
@@ -315,7 +315,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Hide audio player gracefully if API unavailable
     - _Requirements: 5.10.5_
 
-  - [ ]* 9.5 Write property test for Audio Playback Navigation Behavior
+  - [ ]\* 9.5 Write property test for Audio Playback Navigation Behavior
     - **Property 28: Audio Playback Navigation Behavior**
     - **Validates: Requirements 5.10.5**
     - Test that audio pauses when navigating to different page
@@ -346,13 +346,13 @@ The implementation follows a staged approach: core reading experience first, the
     - Store donation records in database
     - _Requirements: 5.8.4_
 
-  - [ ]* 11.4 Write property test for Donation Amount Flexibility
+  - [ ]\* 11.4 Write property test for Donation Amount Flexibility
     - **Property 18: Donation Amount Flexibility**
     - **Validates: Requirements 5.8.3**
     - Test that any amount >= $1 creates successful checkout session
     - _Requirements: 5.8.3_
 
-  - [ ]* 11.5 Write property test for Donor Content Parity
+  - [ ]\* 11.5 Write property test for Donor Content Parity
     - **Property 19: Donor Content Parity**
     - **Validates: Requirements 5.8.5**
     - Test that donors and non-donors see identical content and features
@@ -365,7 +365,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Respect opt-in preference
     - _Requirements: 5.8.6_
 
-  - [ ]* 11.7 Write property test for Community Wall Opt-In Round-Trip
+  - [ ]\* 11.7 Write property test for Community Wall Opt-In Round-Trip
     - **Property 20: Community Wall Opt-In Round-Trip**
     - **Validates: Requirements 5.8.6**
     - Test that opt-in donors appear on wall and opt-out donors don't
@@ -379,7 +379,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Ensure all forms have proper labels
     - _Requirements: 5.9.1_
 
-  - [ ]* 12.2 Write property test for Semantic HTML Structure
+  - [ ]\* 12.2 Write property test for Semantic HTML Structure
     - **Property 21: Semantic HTML Structure**
     - **Validates: Requirements 5.9.1**
     - Test that all content uses proper semantic HTML
@@ -392,7 +392,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Test tab order throughout application
     - _Requirements: 5.9.2, 5.10.4_
 
-  - [ ]* 12.4 Write property test for Keyboard Navigation Completeness
+  - [ ]\* 12.4 Write property test for Keyboard Navigation Completeness
     - **Property 22: Keyboard Navigation Completeness**
     - **Validates: Requirements 5.9.2, 5.10.4**
     - Test that all interactive elements are keyboard operable
@@ -404,7 +404,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Test with contrast checking tools
     - _Requirements: 5.9.3_
 
-  - [ ]* 12.6 Write property test for Color Contrast Compliance
+  - [ ]\* 12.6 Write property test for Color Contrast Compliance
     - **Property 23: Color Contrast Compliance**
     - **Validates: Requirements 5.9.3**
     - Test that all text meets WCAG AA contrast standards
@@ -416,7 +416,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Ensure responsive layout handles large text
     - _Requirements: 5.9.4_
 
-  - [ ]* 12.8 Write property test for Text Scaling Resilience
+  - [ ]\* 12.8 Write property test for Text Scaling Resilience
     - **Property 24: Text Scaling Resilience**
     - **Validates: Requirements 5.9.4**
     - Test that 200% text scaling doesn't break layout
@@ -428,7 +428,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Use empty alt for decorative images
     - _Requirements: 5.9.5_
 
-  - [ ]* 12.10 Write property test for Image Alternative Text
+  - [ ]\* 12.10 Write property test for Image Alternative Text
     - **Property 25: Image Alternative Text**
     - **Validates: Requirements 5.9.5**
     - Test that all images have appropriate alt attributes
@@ -441,13 +441,13 @@ The implementation follows a staged approach: core reading experience first, the
     - Configure security headers (HSTS, CSP, X-Frame-Options)
     - _Requirements: 7.5.3_
 
-  - [ ]* 13.2 Write property test for HTTPS Transport Security
+  - [ ]\* 13.2 Write property test for HTTPS Transport Security
     - **Property 29: HTTPS Transport Security**
     - **Validates: Requirements 7.5.3**
     - Test that all requests use HTTPS with TLS 1.2+
     - _Requirements: 7.5.3_
 
-  - [ ]* 13.3 Write property test for Payment Data Isolation
+  - [ ]\* 13.3 Write property test for Payment Data Isolation
     - **Property 30: Payment Data Isolation**
     - **Validates: Requirements 7.5.4**
     - Test that database never contains credit card data
@@ -504,7 +504,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Set up service worker caching strategy
     - _Requirements: 7.3, 7.4_
 
-  - [ ]* 15.4 Run Lighthouse CI and verify performance targets
+  - [ ]\* 15.4 Run Lighthouse CI and verify performance targets
     - Configure Lighthouse CI in GitHub Actions
     - Verify Performance ≥ 90, Accessibility = 100, Best Practices ≥ 90, SEO = 100
     - Verify Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1

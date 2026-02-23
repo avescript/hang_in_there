@@ -36,28 +36,28 @@ graph TB
         SW[Service Worker]
         PWA[PWA Manifest]
     end
-    
+
     subgraph "Application Layer"
         Next[Next.js App]
         API[API Routes]
         Auth[NextAuth.js]
     end
-    
+
     subgraph "Content Layer"
         Strapi[Strapi CMS]
         Media[Media Library]
     end
-    
+
     subgraph "Data Layer"
         PG[(PostgreSQL)]
     end
-    
+
     subgraph "External Services"
         Stripe[Stripe API]
         Push[Web Push / VAPID]
         Speech[Web Speech API]
     end
-    
+
     Browser --> Next
     Browser --> SW
     SW --> PWA
@@ -75,33 +75,36 @@ graph TB
 
 ### Technology Stack
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| Frontend Framework | React 18 + Next.js 14 | SSR, routing, PWA support |
-| Styling | Tailwind CSS 3 | Utility-first CSS, responsive design |
-| CMS | Strapi 4 | Headless CMS for editorial workflow |
-| Authentication | NextAuth.js 4 | OAuth + email/password auth |
-| Database | PostgreSQL 15 | Relational data storage |
-| Push Notifications | Web Push API + VAPID | Browser-native notifications |
-| Audio | Web Speech API | Text-to-speech (Phase 1) |
-| Payments | Stripe | Donation processing |
-| Analytics | Plausible | Privacy-first analytics |
+| Layer              | Technology            | Purpose                              |
+| ------------------ | --------------------- | ------------------------------------ |
+| Frontend Framework | React 18 + Next.js 14 | SSR, routing, PWA support            |
+| Styling            | Tailwind CSS 3        | Utility-first CSS, responsive design |
+| CMS                | Strapi 4              | Headless CMS for editorial workflow  |
+| Authentication     | NextAuth.js 4         | OAuth + email/password auth          |
+| Database           | PostgreSQL 15         | Relational data storage              |
+| Push Notifications | Web Push API + VAPID  | Browser-native notifications         |
+| Audio              | Web Speech API        | Text-to-speech (Phase 1)             |
+| Payments           | Stripe                | Donation processing                  |
+| Analytics          | Plausible             | Privacy-first analytics              |
 
 ### Hosting Strategy
 
 **Phase 1 (Development)**: Vercel Hobby (free, non-commercial)
+
 - Zero-config Next.js deployment
 - Preview environments per PR
 - Global CDN
 - Constraints: Non-commercial use only, 100GB bandwidth/month
 
 **Phase 2 (Launch)**: Vercel Pro ($20/month)
+
 - Commercial use permitted
 - Unlimited bandwidth
 - Production-ready performance
 - Trigger: When donation flow goes live
 
 **Phase 3 (Scale)**: Self-hosted VPS + Coolify
+
 - Hetzner/DigitalOcean VPS ($6-12/month)
 - Coolify for deployment management
 - Cloudflare CDN (free tier)
@@ -110,6 +113,7 @@ graph TB
 ### Data Flow
 
 **Story Publication Flow**:
+
 1. Editor creates/edits story in Strapi CMS
 2. Story scheduled for publication date
 3. Cron job checks for stories to publish at configured time
@@ -117,6 +121,7 @@ graph TB
 5. Story appears in feed and archive
 
 **User Interaction Flow**:
+
 1. User visits site (guest or authenticated)
 2. Next.js SSR renders story feed from Strapi API
 3. User interactions (save, react, comment) hit Next.js API routes
@@ -130,17 +135,20 @@ graph TB
 #### Core Layout Components
 
 **AppShell**
+
 - Persistent navigation header with logo, search, account menu
 - Footer with support link, accessibility statement, privacy policy
 - Responsive breakpoints: mobile (<640px), tablet (640-1024px), desktop (>1024px)
 
 **StoryFeed**
+
 - Displays stories in reverse chronological order
 - Daily story pinned at top with visual distinction
 - Infinite scroll with pagination fallback
 - Loading states and error boundaries
 
 **StoryCard**
+
 - Headline (max 12 words)
 - Narrative text (250-400 words)
 - Subject name and identifier
@@ -154,6 +162,7 @@ graph TB
 #### Story Interaction Components
 
 **AudioPlayer**
+
 - Play/pause button
 - Progress bar with seek capability
 - Playback speed selector (0.75x, 1x, 1.25x, 1.5x)
@@ -161,12 +170,14 @@ graph TB
 - Uses Web Speech API in Phase 1
 
 **ReactionBar**
+
 - Curated emoji set: ❤️ (love), ✊ (resilience), 🌱 (growth), 😢 (moved)
 - Click to toggle reaction
 - Display count for each reaction
 - Optimistic UI updates
 
 **CommentSection**
+
 - Threaded comments (max depth: 2)
 - Comment input with character limit (500 chars)
 - Community guidelines displayed above input
@@ -177,6 +188,7 @@ graph TB
 #### User Account Components
 
 **AuthModal**
+
 - Email/password login form
 - OAuth buttons (Google, Apple)
 - Sign up / sign in toggle
@@ -184,12 +196,14 @@ graph TB
 - Accessible form validation
 
 **UserSettings**
+
 - Notification preferences (on/off, time of day)
 - Theme filter preferences
 - Streak counter visibility toggle
 - Account deletion option
 
 **SavedStories**
+
 - Grid/list view of bookmarked stories
 - Filter by theme
 - Search within saved stories
@@ -198,6 +212,7 @@ graph TB
 #### Discovery Components
 
 **StoryArchive**
+
 - Search bar with keyword search
 - Theme filter dropdown
 - Date range picker
@@ -206,6 +221,7 @@ graph TB
 - "Random Story" button
 
 **SearchResults**
+
 - Highlighted search terms in results
 - Result count
 - Empty state with suggestions
@@ -213,6 +229,7 @@ graph TB
 #### Donation Components
 
 **DonationPage**
+
 - Mission statement and cost transparency
 - Suggested donation tiers ($3, $5, $10/month or one-time)
 - Custom amount input
@@ -221,6 +238,7 @@ graph TB
 - Thank you confirmation
 
 **CommunityWall**
+
 - Grid of donor names (first name, last initial)
 - Chronological or random order
 - Privacy-respecting display
@@ -651,6 +669,7 @@ erDiagram
 ### Data Validation Rules
 
 **Story Content (Strapi)**:
+
 - Headline: 1-12 words, required
 - Narrative: 250-400 words, required
 - Subject name: required, max 255 chars
@@ -659,12 +678,14 @@ erDiagram
 - Scheduled date: future date, required for scheduled stories
 
 **User Input**:
+
 - Email: valid email format, unique
 - Comment content: 1-500 characters
 - Display name: 1-100 characters, alphanumeric + spaces
 - Notification time: HH:MM format, 00:00-23:59
 
 **Business Rules**:
+
 - Users can save each story only once
 - Users can have only one reaction type per story
 - Comments can be nested max 2 levels deep
@@ -672,10 +693,9 @@ erDiagram
 - Reading streak increments only once per day
 - Donations must be minimum $1 USD
 
-
 ## Correctness Properties
 
-*A property is a characteristic or behavior that should hold true across all valid executions of a system—essentially, a formal statement about what the system should do. Properties serve as the bridge between human-readable specifications and machine-verifiable correctness guarantees.*
+_A property is a characteristic or behavior that should hold true across all valid executions of a system—essentially, a formal statement about what the system should do. Properties serve as the bridge between human-readable specifications and machine-verifiable correctness guarantees._
 
 ### Property Reflection
 
@@ -693,181 +713,181 @@ The following properties represent the unique, non-redundant validation requirem
 
 ### Property 1: Story Card Completeness
 
-*For any* published story, the rendered story card must contain all required fields: headline (1-12 words), narrative (250-400 words), subject name, subject identifier, theme tag, source attribution link, and publication date.
+_For any_ published story, the rendered story card must contain all required fields: headline (1-12 words), narrative (250-400 words), subject name, subject identifier, theme tag, source attribution link, and publication date.
 
 **Validates: Requirements 5.1.1, 5.1.2, 5.1.3, 5.1.4, 5.1.5, 5.1.6**
 
 ### Property 2: Daily Story Consistency
 
-*For any* given date, all users querying the daily story must receive the same story regardless of their timezone, authentication status, or preferences.
+_For any_ given date, all users querying the daily story must receive the same story regardless of their timezone, authentication status, or preferences.
 
 **Validates: Requirements 5.2.3**
 
 ### Property 3: User Settings Round-Trip
 
-*For any* user settings object (notification preferences, preferred time, theme filters, streak visibility), saving the settings and then retrieving them must return an equivalent settings object.
+_For any_ user settings object (notification preferences, preferred time, theme filters, streak visibility), saving the settings and then retrieving them must return an equivalent settings object.
 
 **Validates: Requirements 5.2.2, 5.4.4**
 
 ### Property 4: Notification Rate Limiting
 
-*For any* user with notifications enabled, the system must never send more than one notification within any 24-hour period, regardless of how many times the notification job runs.
+_For any_ user with notifications enabled, the system must never send more than one notification within any 24-hour period, regardless of how many times the notification job runs.
 
 **Validates: Requirements 5.3.3**
 
 ### Property 5: Guest Access to Stories
 
-*For any* published story, unauthenticated (guest) users must be able to read the full story content without being required to create an account.
+_For any_ published story, unauthenticated (guest) users must be able to read the full story content without being required to create an account.
 
 **Validates: Requirements 5.4.1**
 
 ### Property 6: Saved Stories Round-Trip
 
-*For any* story that a user saves, querying that user's saved stories list must include that story until the user explicitly unsaves it.
+_For any_ story that a user saves, querying that user's saved stories list must include that story until the user explicitly unsaves it.
 
 **Validates: Requirements 5.4.3**
 
 ### Property 7: Reading Streak Calculation
 
-*For any* sequence of story reads by a user, the current streak must equal the number of consecutive days (ending with today) on which the user read at least one story.
+_For any_ sequence of story reads by a user, the current streak must equal the number of consecutive days (ending with today) on which the user read at least one story.
 
 **Validates: Requirements 5.4.6**
 
 ### Property 8: Theme Filter Accuracy
 
-*For any* theme filter applied to the story archive, all returned stories must have that theme tag, and no stories with that theme tag should be excluded from the results.
+_For any_ theme filter applied to the story archive, all returned stories must have that theme tag, and no stories with that theme tag should be excluded from the results.
 
 **Validates: Requirements 5.4.5**
 
 ### Property 9: Archive Accessibility
 
-*For any* story that has been published (status = 'published'), that story must be retrievable from the public archive regardless of authentication status.
+_For any_ story that has been published (status = 'published'), that story must be retrievable from the public archive regardless of authentication status.
 
 **Validates: Requirements 5.5.1**
 
 ### Property 10: Search Result Relevance
 
-*For any* search query (keyword, theme, or date range), all returned stories must match the search criteria, and the results must be ordered by publication date (newest first by default).
+_For any_ search query (keyword, theme, or date range), all returned stories must match the search criteria, and the results must be ordered by publication date (newest first by default).
 
 **Validates: Requirements 5.5.2**
 
 ### Property 11: Pagination Consistency
 
-*For any* page number in the story archive, the response must contain at most 20 stories, and requesting the same page multiple times must return the same stories in the same order (assuming no new publications).
+_For any_ page number in the story archive, the response must contain at most 20 stories, and requesting the same page multiple times must return the same stories in the same order (assuming no new publications).
 
 **Validates: Requirements 5.5.3**
 
 ### Property 12: Random Story Variability
 
-*For any* sequence of random story requests, the probability of receiving the same story twice in a row must be less than 1/N where N is the total number of published stories (assuming N > 1).
+_For any_ sequence of random story requests, the probability of receiving the same story twice in a row must be less than 1/N where N is the total number of published stories (assuming N > 1).
 
 **Validates: Requirements 5.5.4**
 
 ### Property 13: Reaction Uniqueness
 
-*For any* user and story combination, a user can have at most one active reaction of each type, and adding the same reaction type twice must be idempotent (no duplicate reactions created).
+_For any_ user and story combination, a user can have at most one active reaction of each type, and adding the same reaction type twice must be idempotent (no duplicate reactions created).
 
 **Validates: Requirements 5.6.1, 5.6.2**
 
 ### Property 14: Comment Authentication Requirement
 
-*For any* attempt to post a comment, the request must fail with an authentication error if the user is not authenticated, and must succeed if the user is authenticated and the comment is valid.
+_For any_ attempt to post a comment, the request must fail with an authentication error if the user is not authenticated, and must succeed if the user is authenticated and the comment is valid.
 
 **Validates: Requirements 5.6.3**
 
 ### Property 15: Comment Content Filtering
 
-*For any* comment containing content from a prohibited content list (slurs, hate speech), the comment must be rejected before being stored in the database.
+_For any_ comment containing content from a prohibited content list (slurs, hate speech), the comment must be rejected before being stored in the database.
 
 **Validates: Requirements 5.6.5**
 
 ### Property 16: Flagged Comment Visibility
 
-*For any* comment that has been flagged by any user, that comment must not be visible to non-moderator users until a moderator reviews and clears the flag.
+_For any_ comment that has been flagged by any user, that comment must not be visible to non-moderator users until a moderator reviews and clears the flag.
 
 **Validates: Requirements 5.6.6**
 
 ### Property 17: Comment Threading Depth Limit
 
-*For any* comment at depth 2 (a reply to a reply), attempting to reply to that comment must be rejected, ensuring maximum thread depth never exceeds 2.
+_For any_ comment at depth 2 (a reply to a reply), attempting to reply to that comment must be rejected, ensuring maximum thread depth never exceeds 2.
 
 **Validates: Requirements 5.6.7**
 
 ### Property 18: Donation Amount Flexibility
 
-*For any* donation amount greater than or equal to the minimum ($1 USD), the Stripe checkout session must be created successfully, regardless of whether the amount matches a suggested tier.
+_For any_ donation amount greater than or equal to the minimum ($1 USD), the Stripe checkout session must be created successfully, regardless of whether the amount matches a suggested tier.
 
 **Validates: Requirements 5.8.3**
 
 ### Property 19: Donor Content Parity
 
-*For any* two users (one donor, one non-donor), both must see identical story content, features, and access permissions—donations must not grant content privileges.
+_For any_ two users (one donor, one non-donor), both must see identical story content, features, and access permissions—donations must not grant content privileges.
 
 **Validates: Requirements 5.8.5**
 
 ### Property 20: Community Wall Opt-In Round-Trip
 
-*For any* donor who opts in to display on the Community Wall, their display name must appear on the wall, and for any donor who opts out, their name must not appear.
+_For any_ donor who opts in to display on the Community Wall, their display name must appear on the wall, and for any donor who opts out, their name must not appear.
 
 **Validates: Requirements 5.8.6**
 
 ### Property 21: Semantic HTML Structure
 
-*For any* story content rendered in the application, all headings must use proper heading tags (h1-h6), all lists must use list tags (ul/ol/li), and all interactive elements must use appropriate semantic HTML or ARIA roles.
+_For any_ story content rendered in the application, all headings must use proper heading tags (h1-h6), all lists must use list tags (ul/ol/li), and all interactive elements must use appropriate semantic HTML or ARIA roles.
 
 **Validates: Requirements 5.9.1**
 
 ### Property 22: Keyboard Navigation Completeness
 
-*For any* interactive element in the application (buttons, links, form inputs, audio controls), that element must be reachable and operable using only keyboard input (Tab, Enter, Space, Arrow keys).
+_For any_ interactive element in the application (buttons, links, form inputs, audio controls), that element must be reachable and operable using only keyboard input (Tab, Enter, Space, Arrow keys).
 
 **Validates: Requirements 5.9.2, 5.10.4**
 
 ### Property 23: Color Contrast Compliance
 
-*For any* text element in the application, the contrast ratio between the text color and its background must meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text).
+_For any_ text element in the application, the contrast ratio between the text color and its background must meet WCAG AA standards (4.5:1 for normal text, 3:1 for large text).
 
 **Validates: Requirements 5.9.3**
 
 ### Property 24: Text Scaling Resilience
 
-*For any* page in the application, increasing the browser's text size to 200% must not cause text to be cut off, overlap, or become unreadable.
+_For any_ page in the application, increasing the browser's text size to 200% must not cause text to be cut off, overlap, or become unreadable.
 
 **Validates: Requirements 5.9.4**
 
 ### Property 25: Image Alternative Text
 
-*For any* image element in the application, the element must have an alt attribute that is either descriptive (for content images) or empty (for decorative images).
+_For any_ image element in the application, the element must have an alt attribute that is either descriptive (for content images) or empty (for decorative images).
 
 **Validates: Requirements 5.9.5**
 
 ### Property 26: Audio Player Availability
 
-*For any* story page, an audio player with play, pause, and progress controls must be present and functional.
+_For any_ story page, an audio player with play, pause, and progress controls must be present and functional.
 
 **Validates: Requirements 5.10.1, 5.10.2**
 
 ### Property 27: Audio Playback Speed Control
 
-*For any* audio player, the user must be able to select playback speeds of 0.75x, 1x, 1.25x, and 1.5x, and the audio must play at the selected speed.
+_For any_ audio player, the user must be able to select playback speeds of 0.75x, 1x, 1.25x, and 1.5x, and the audio must play at the selected speed.
 
 **Validates: Requirements 5.10.3**
 
 ### Property 28: Audio Playback Navigation Behavior
 
-*For any* audio player that is currently playing, navigating to a different page must pause the playback.
+_For any_ audio player that is currently playing, navigating to a different page must pause the playback.
 
 **Validates: Requirements 5.10.5**
 
 ### Property 29: HTTPS Transport Security
 
-*For any* HTTP request made by the application in production, the request must use HTTPS protocol with TLS 1.2 or higher.
+_For any_ HTTP request made by the application in production, the request must use HTTPS protocol with TLS 1.2 or higher.
 
 **Validates: Requirements 7.5.3**
 
 ### Property 30: Payment Data Isolation
 
-*For any* database query against the application's PostgreSQL database, the result set must never contain credit card numbers, CVV codes, or full card data—all payment data must be stored exclusively in Stripe.
+_For any_ database query against the application's PostgreSQL database, the result set must never contain credit card numbers, CVV codes, or full card data—all payment data must be stored exclusively in Stripe.
 
 **Validates: Requirements 7.5.4**
 
@@ -878,35 +898,41 @@ The following properties represent the unique, non-redundant validation requirem
 The application handles errors across several categories:
 
 **1. Authentication Errors**
+
 - Invalid credentials
 - Expired sessions
 - OAuth provider failures
 - Email verification failures
 
 **2. Authorization Errors**
+
 - Unauthenticated access to protected resources
 - Insufficient permissions for moderation actions
 - Attempt to modify another user's data
 
 **3. Validation Errors**
+
 - Invalid input formats (email, URLs, dates)
 - Content length violations (headline too long, comment too short)
 - Required fields missing
 - Invalid enum values (theme, reaction type)
 
 **4. External Service Errors**
+
 - Strapi CMS unavailable
 - Stripe API failures
 - Push notification delivery failures
 - Web Speech API not supported
 
 **5. Database Errors**
+
 - Connection failures
 - Constraint violations (unique, foreign key)
 - Transaction deadlocks
 - Query timeouts
 
 **6. Rate Limiting Errors**
+
 - Too many requests from single IP
 - Too many failed login attempts
 - Comment spam detection
@@ -917,10 +943,7 @@ The application handles errors across several categories:
 
 ```typescript
 // API call wrapper with error handling
-async function apiCall<T>(
-  endpoint: string,
-  options?: RequestInit
-): Promise<Result<T, ApiError>> {
+async function apiCall<T>(endpoint: string, options?: RequestInit): Promise<Result<T, ApiError>> {
   try {
     const response = await fetch(endpoint, {
       ...options,
@@ -995,10 +1018,7 @@ export function handleApiError(error: unknown): NextResponse {
   }
 
   if (error instanceof NotFoundError) {
-    return NextResponse.json(
-      { code: 'NOT_FOUND', message: error.message },
-      { status: 404 }
-    );
+    return NextResponse.json({ code: 'NOT_FOUND', message: error.message }, { status: 404 });
   }
 
   if (error instanceof RateLimitError) {
@@ -1036,12 +1056,14 @@ export function handleApiError(error: unknown): NextResponse {
 ### Monitoring and Alerting
 
 **Error Tracking**:
+
 - Client-side errors logged to error tracking service (e.g., Sentry)
 - Server-side errors logged with structured logging
 - Failed API calls tracked with endpoint, status code, and error type
 - Database errors monitored for patterns (connection pool exhaustion, slow queries)
 
 **Alert Thresholds**:
+
 - Error rate > 5% of requests: Warning
 - Error rate > 10% of requests: Critical
 - Database connection failures: Immediate alert
@@ -1055,6 +1077,7 @@ export function handleApiError(error: unknown): NextResponse {
 The application uses both unit testing and property-based testing to ensure comprehensive coverage:
 
 **Unit Tests**: Focus on specific examples, edge cases, and integration points
+
 - Specific user flows (login, save story, post comment)
 - Edge cases (empty states, boundary values, error conditions)
 - Component rendering with specific props
@@ -1062,6 +1085,7 @@ The application uses both unit testing and property-based testing to ensure comp
 - Integration between components
 
 **Property-Based Tests**: Verify universal properties across all inputs
+
 - Universal properties that hold for all valid inputs
 - Comprehensive input coverage through randomization
 - Minimum 100 iterations per property test
@@ -1071,18 +1095,19 @@ Together, these approaches provide comprehensive coverage: unit tests catch conc
 
 ### Testing Stack
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| Unit Testing | Jest + React Testing Library | Component and function testing |
-| Property Testing | fast-check | Property-based testing for JavaScript/TypeScript |
-| E2E Testing | Playwright | Full user flow testing |
-| API Testing | Supertest | API endpoint testing |
-| Accessibility Testing | axe-core + jest-axe | Automated WCAG compliance |
-| Visual Regression | Percy or Chromatic | UI consistency testing |
+| Layer                 | Technology                   | Purpose                                          |
+| --------------------- | ---------------------------- | ------------------------------------------------ |
+| Unit Testing          | Jest + React Testing Library | Component and function testing                   |
+| Property Testing      | fast-check                   | Property-based testing for JavaScript/TypeScript |
+| E2E Testing           | Playwright                   | Full user flow testing                           |
+| API Testing           | Supertest                    | API endpoint testing                             |
+| Accessibility Testing | axe-core + jest-axe          | Automated WCAG compliance                        |
+| Visual Regression     | Percy or Chromatic           | UI consistency testing                           |
 
 ### Property-Based Test Configuration
 
 All property-based tests must:
+
 - Run minimum 100 iterations (configured in fast-check)
 - Include a comment tag referencing the design property
 - Use appropriate generators for input data
@@ -1096,7 +1121,7 @@ import fc from 'fast-check';
 /**
  * Feature: hang-in-there-daily-inspiration
  * Property 6: Saved Stories Round-Trip
- * 
+ *
  * For any story that a user saves, querying that user's saved stories list
  * must include that story until the user explicitly unsaves it.
  */
@@ -1111,13 +1136,13 @@ describe('Property 6: Saved Stories Round-Trip', () => {
         async ({ userId, storyId }) => {
           // Save the story
           await saveStory(userId, storyId);
-          
+
           // Retrieve saved stories
           const savedStories = await getSavedStories(userId);
-          
+
           // Story must be in the list
-          expect(savedStories.some(s => s.id === storyId)).toBe(true);
-          
+          expect(savedStories.some((s) => s.id === storyId)).toBe(true);
+
           // Cleanup
           await unsaveStory(userId, storyId);
         }
@@ -1131,6 +1156,7 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 ### Unit Test Coverage
 
 **Frontend Components**:
+
 - StoryCard: Renders all required fields, handles missing optional fields
 - AudioPlayer: Play/pause, speed control, keyboard navigation
 - CommentSection: Post comment, reply, flag, pagination
@@ -1138,6 +1164,7 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 - StoryArchive: Search, filter, pagination, empty states
 
 **API Routes**:
+
 - `/api/stories/daily`: Returns correct story for timezone
 - `/api/user/save`: Saves and unsaves stories
 - `/api/reactions`: Adds and removes reactions, prevents duplicates
@@ -1146,6 +1173,7 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 - `/api/donations/create-checkout`: Creates Stripe session
 
 **Business Logic**:
+
 - Streak calculation: Consecutive days, resets on missed day
 - Comment moderation: Filters prohibited content, hides flagged comments
 - Notification scheduling: Respects user timezone and preferred time
@@ -1174,12 +1202,14 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 ### Accessibility Testing
 
 **Automated Tests** (jest-axe):
+
 - Run axe-core on all pages and components
 - Verify no WCAG AA violations
 - Check color contrast ratios
 - Validate ARIA attributes
 
 **Manual Testing Checklist**:
+
 - Screen reader navigation (NVDA, JAWS, VoiceOver)
 - Keyboard-only navigation through all features
 - Text scaling to 200% without loss of function
@@ -1189,11 +1219,13 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 ### Performance Testing
 
 **Lighthouse CI**:
+
 - Run on every PR
 - Enforce minimum scores: Performance ≥ 90, Accessibility = 100, Best Practices ≥ 90, SEO = 100
 - Track Core Web Vitals trends
 
 **Load Testing**:
+
 - Simulate 1000 concurrent users reading daily story
 - Test notification delivery to 10,000 subscribers
 - Verify database query performance under load
@@ -1202,6 +1234,7 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 ### Continuous Integration
 
 **GitHub Actions Workflow**:
+
 1. Lint code (ESLint, Prettier)
 2. Type check (TypeScript)
 3. Run unit tests (Jest)
@@ -1213,6 +1246,7 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 9. Deploy preview (Vercel)
 
 **Test Coverage Requirements**:
+
 - Unit test coverage: ≥ 80% for business logic
 - Property test coverage: All 30 properties implemented
 - E2E test coverage: All critical user flows
@@ -1221,18 +1255,21 @@ describe('Property 6: Saved Stories Round-Trip', () => {
 ### Test Data Management
 
 **Fixtures**:
+
 - Sample stories with various themes
 - User accounts with different permission levels
 - Comments with various content (clean, flagged, nested)
 - Donation records with different amounts and frequencies
 
 **Generators** (for property tests):
+
 - Story generator: Valid stories with all required fields
 - User generator: Users with various settings
 - Comment generator: Comments with valid and invalid content
 - Date generator: Dates for streak calculations and scheduling
 
 **Database Seeding**:
+
 - Development: Seed with 100 sample stories
 - Testing: Fresh database per test suite
 - Staging: Production-like data volume (10,000+ stories)

@@ -8,6 +8,7 @@ A Progressive Web Application that delivers one curated, verified story each day
 
 - **Frontend**: React 18 + Next.js 14 (App Router)
 - **Styling**: Tailwind CSS 3
+- **Database**: PostgreSQL 15
 - **Language**: TypeScript (strict mode)
 - **Code Quality**: ESLint + Prettier
 
@@ -15,13 +16,50 @@ A Progressive Web Application that delivers one curated, verified story each day
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
+- PostgreSQL 15+ (installed and running)
 
 ### Installation
 
+1. **Clone and install dependencies**
+
 ```bash
 npm install
+```
+
+2. **Set up the database**
+
+Copy the environment example file and configure your database:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` with your PostgreSQL credentials:
+
+```env
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=hang_in_there
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_password_here
+```
+
+3. **Run database migrations**
+
+```bash
+# Option 1: Use the setup script (creates database + runs migrations)
+npm run db:setup
+
+# Option 2: Run migrations manually (database must exist)
+npm run migrate:up
+```
+
+4. **Verify database setup**
+
+```bash
+npm run db:check
 ```
 
 ### Development
@@ -52,6 +90,24 @@ npm run format
 npm run format:check
 ```
 
+### Database Management
+
+```bash
+# Run migrations
+npm run migrate:up
+
+# Rollback last migration
+npm run migrate:down
+
+# Create new migration
+npm run migrate:create my-migration-name
+
+# Check database health
+npm run db:check
+```
+
+For detailed database documentation, see [DATABASE.md](./DATABASE.md).
+
 ## Project Structure
 
 ```
@@ -61,8 +117,19 @@ hang-in-there/
 │   ├── page.tsx         # Homepage
 │   └── globals.css      # Global styles
 ├── components/          # React components (to be added)
-├── lib/                 # Utility functions (to be added)
-├── public/              # Static assets (to be added)
+├── lib/                 # Utility functions and database connection
+│   ├── db.ts           # PostgreSQL connection pool
+│   └── types/          # TypeScript type definitions
+│       └── database.ts # Database model types
+├── migrations/          # Database migration scripts
+├── scripts/            # Utility scripts
+│   ├── setup-database.sh   # Database setup script
+│   └── check-database.js   # Database health check
+├── docs/               # Documentation
+│   └── database-quick-reference.md
+├── public/             # Static assets (to be added)
+├── database.json       # Database configuration
+├── DATABASE.md         # Database setup guide
 └── ...config files
 ```
 
