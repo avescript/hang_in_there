@@ -16,14 +16,14 @@ The implementation follows a staged approach: core reading experience first, the
     - Configure ESLint and Prettier
     - _Requirements: 7.2, 8.1_
 
-  - [-] 1.2 Set up PostgreSQL database and schema
+  - [x] 1.2 Set up PostgreSQL database and schema
     - Create PostgreSQL database
     - Implement all database tables from design (users, accounts, sessions, verification_tokens, user_settings, saved_stories, reading_streaks, story_reads, reactions, comments, comment_flags, push_subscriptions, donations)
     - Add indexes for performance
     - Create database migration scripts
     - _Requirements: 7.2, 7.5_
 
-  - [ ] 1.3 Configure Strapi CMS
+  - [-] 1.3 Configure Strapi CMS
     - Install and configure Strapi 4
     - Create Story content type with all fields (headline, narrative, subjectName, subjectIdentifier, theme, sourceUrl, sourceAttribution, publishDate, scheduledDate, status, featuredImage, commentsEnabled)
     - Set up media library for featured images
