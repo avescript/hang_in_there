@@ -45,7 +45,7 @@ The implementation follows a staged approach: core reading experience first, the
     - _Requirements: 7.1, 10.1_
 
 - [ ] 2. Core story feed and reading experience
-  - [ ] 2.1 Create story data models and API integration
+  - [-] 2.1 Create story data models and API integration
     - Define TypeScript interfaces for Story type
     - Implement Strapi API client functions (getStories, getDailyStory, getStoryById)
     - Add error handling for CMS unavailability
