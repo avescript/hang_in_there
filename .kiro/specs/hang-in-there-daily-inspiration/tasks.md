@@ -45,13 +45,13 @@ The implementation follows a staged approach: core reading experience first, the
     - _Requirements: 7.1, 10.1_
 
 - [ ] 2. Core story feed and reading experience
-  - [-] 2.1 Create story data models and API integration
+  - [x] 2.1 Create story data models and API integration
     - Define TypeScript interfaces for Story type
     - Implement Strapi API client functions (getStories, getDailyStory, getStoryById)
     - Add error handling for CMS unavailability
     - _Requirements: 5.1, 5.2_
 
-  - [ ] 2.2 Implement StoryCard component
+  - [x] 2.2 Implement StoryCard component
     - Create StoryCard component with all required fields (headline, narrative, subject, theme tag, source link, date)
     - Add Share and Save buttons (non-functional placeholders)
     - Style with Tailwind CSS following design system
@@ -65,7 +65,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Use fast-check to generate story objects
     - _Requirements: 5.1_
 
-  - [ ] 2.4 Implement StoryFeed component
+  - [x] 2.4 Implement StoryFeed component
     - Create StoryFeed component with reverse chronological order
     - Pin daily story at top with visual distinction
     - Implement infinite scroll with pagination fallback
