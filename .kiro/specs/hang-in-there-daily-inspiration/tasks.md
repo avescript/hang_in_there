@@ -72,7 +72,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Add loading states and error boundaries
     - _Requirements: 5.1, 5.2_
 
-  - [ ] 2.5 Create daily story API route
+  - [x] 2.5 Create daily story API route
     - Implement GET /api/stories/daily endpoint
     - Calculate user's timezone from request or default to UTC
     - Return today's story based on timezone
@@ -85,7 +85,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Test that all users get the same daily story for a given date
     - _Requirements: 5.2.3_
 
-  - [ ] 2.7 Create homepage with story feed
+  - [x] 2.7 Create homepage with story feed
     - Implement app/page.tsx with StoryFeed
     - Add AppShell layout with navigation header and footer
     - Implement responsive breakpoints
