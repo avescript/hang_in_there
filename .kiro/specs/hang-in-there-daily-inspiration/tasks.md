@@ -91,7 +91,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement responsive breakpoints
     - _Requirements: 5.1, 8.1_
 
-- [ ] 3. Checkpoint - Verify core reading experience
+- [x] 3. Checkpoint - Verify core reading experience
   - Ensure all tests pass, verify stories render correctly, ask the user if questions arise.
 
 - [ ] 4. User accounts and personalization

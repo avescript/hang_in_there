@@ -1,19 +1,29 @@
 /**
  * Tests for Strapi API Client
- * 
+ *
  * Basic unit tests to verify API client functions work correctly
+ *
+ * @jest-environment node
  */
 
 import { getStories, getDailyStory, getStoryById, checkStrapiHealth } from '../strapi';
 
-// Mock fetch globally
-global.fetch = jest.fn();
+// Ensure fetch exists on global so jest.spyOn can mock it
+if (!global.fetch) {
+  global.fetch = jest.fn();
+}
+
+let fetchSpy: jest.SpyInstance;
+
+beforeEach(() => {
+  fetchSpy = jest.spyOn(global, 'fetch').mockImplementation(jest.fn());
+});
+
+afterEach(() => {
+  fetchSpy.mockRestore();
+});
 
 describe('Strapi API Client', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   describe('getStories', () => {
     it('should fetch stories successfully', async () => {
       const mockResponse = {
@@ -38,19 +48,14 @@ describe('Strapi API Client', () => {
           },
         ],
         meta: {
-          pagination: {
-            page: 1,
-            pageSize: 20,
-            pageCount: 1,
-            total: 1,
-          },
+          pagination: { page: 1, pageSize: 20, pageCount: 1, total: 1 },
         },
       };
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      fetchSpy.mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
-      });
+      } as Response);
 
       const result = await getStories({ status: 'published' });
 
@@ -63,7 +68,7 @@ describe('Strapi API Client', () => {
     });
 
     it('should handle network errors', async () => {
-      (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'));
+      fetchSpy.mockRejectedValueOnce(new Error('Network error'));
 
       const result = await getStories();
 
@@ -75,8 +80,8 @@ describe('Strapi API Client', () => {
 
     it('should handle timeout errors', async () => {
       const timeoutError = new Error('Timeout');
-      timeoutError.name = 'TimeoutError';
-      (global.fetch as jest.Mock).mockRejectedValueOnce(timeoutError);
+      timeoutError.name = 'AbortError';
+      fetchSpy.mockRejectedValueOnce(timeoutError);
 
       const result = await getStories();
 
@@ -95,7 +100,7 @@ describe('Strapi API Client', () => {
             id: 1,
             attributes: {
               headline: 'Daily Story',
-              narrative: 'Today\'s inspiring story.',
+              narrative: "Today's inspiring story.",
               subjectName: 'Jane Smith',
               subjectIdentifier: 'teacher, USA',
               theme: 'community',
@@ -111,19 +116,14 @@ describe('Strapi API Client', () => {
           },
         ],
         meta: {
-          pagination: {
-            page: 1,
-            pageSize: 1,
-            pageCount: 1,
-            total: 1,
-          },
+          pagination: { page: 1, pageSize: 1, pageCount: 1, total: 1 },
         },
       };
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      fetchSpy.mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
-      });
+      } as Response);
 
       const result = await getDailyStory('America/New_York');
 
@@ -137,19 +137,14 @@ describe('Strapi API Client', () => {
       const mockResponse = {
         data: [],
         meta: {
-          pagination: {
-            page: 1,
-            pageSize: 1,
-            pageCount: 0,
-            total: 0,
-          },
+          pagination: { page: 1, pageSize: 1, pageCount: 0, total: 0 },
         },
       };
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      fetchSpy.mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
-      });
+      } as Response);
 
       const result = await getDailyStory();
 
@@ -184,10 +179,10 @@ describe('Strapi API Client', () => {
         meta: {},
       };
 
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      fetchSpy.mockResolvedValueOnce({
         ok: true,
         json: async () => mockResponse,
-      });
+      } as Response);
 
       const result = await getStoryById('1');
 
@@ -199,16 +194,13 @@ describe('Strapi API Client', () => {
     });
 
     it('should handle 404 errors', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
+      fetchSpy.mockResolvedValueOnce({
         ok: false,
         status: 404,
         json: async () => ({
-          error: {
-            name: 'NotFoundError',
-            message: 'Story not found',
-          },
+          error: { name: 'NotFoundError', message: 'Story not found' },
         }),
-      });
+      } as Response);
 
       const result = await getStoryById('999');
 
@@ -221,9 +213,7 @@ describe('Strapi API Client', () => {
 
   describe('checkStrapiHealth', () => {
     it('should return available when CMS is reachable', async () => {
-      (global.fetch as jest.Mock).mockResolvedValueOnce({
-        ok: true,
-      });
+      fetchSpy.mockResolvedValueOnce({ ok: true } as Response);
 
       const result = await checkStrapiHealth();
 
@@ -234,7 +224,7 @@ describe('Strapi API Client', () => {
     });
 
     it('should return error when CMS is unreachable', async () => {
-      (global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Connection refused'));
+      fetchSpy.mockRejectedValueOnce(new Error('Connection refused'));
 
       const result = await checkStrapiHealth();
 

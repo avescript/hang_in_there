@@ -54,8 +54,12 @@ export default function StoryCard({
   const formatDate = (date: Date): string => {
     const storyDate = new Date(date);
     const now = new Date();
-    const diffTime = Math.abs(now.getTime() - storyDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    // Compare dates by calendar day, not by milliseconds
+    const storyDay = new Date(storyDate.getFullYear(), storyDate.getMonth(), storyDate.getDate());
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const diffTime = today.getTime() - storyDay.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 0) {
       return 'Today';
