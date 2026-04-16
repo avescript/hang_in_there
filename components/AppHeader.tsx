@@ -27,6 +27,14 @@ export default function AppHeader() {
             Hang In There
           </a>
 
+          {/* Archive nav link */}
+          <a
+            href="/archive"
+            className="text-sm text-earth-700 hover:text-earth-900 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded transition-colors"
+          >
+            Archive
+          </a>
+
           {/* Right side */}
           <div className="flex items-center gap-3">
             {status === 'loading' ? (

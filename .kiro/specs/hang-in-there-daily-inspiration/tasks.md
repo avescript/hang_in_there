@@ -155,8 +155,8 @@ The implementation follows a staged approach: core reading experience first, the
     - Test that streak equals consecutive days of reading ending with today
     - _Requirements: 5.4.6_
 
-- [ ] 5. Story archive and discovery
-  - [ ] 5.1 Create story archive page
+- [x] 5. Story archive and discovery
+  - [x] 5.1 Create story archive page
     - Implement archive page with search bar
     - Add theme filter dropdown
     - Add date range picker
@@ -164,7 +164,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Implement pagination (20 stories per page)
     - _Requirements: 5.5.1, 5.5.2, 5.5.3_
 
-  - [ ] 5.2 Implement archive API routes
+  - [x] 5.2 Implement archive API routes
     - Create GET /api/stories endpoint with query parameters (page, limit, theme, search, dateFrom, dateTo, random)
     - Implement search logic (keyword matching in headline and narrative)
     - Implement theme filtering
