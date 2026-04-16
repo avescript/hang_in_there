@@ -6,6 +6,7 @@ import { useState } from 'react';
 interface StoryCardProps {
   story: Story;
   isPinned?: boolean;
+  /** Optional callback — if provided, also POSTs to /api/user/save */
   onSave?: (storyId: string) => void;
   onShare?: (storyId: string) => void;
   isSaved?: boolean;
@@ -76,9 +77,21 @@ export default function StoryCard({
     }
   };
 
-  const handleSave = () => {
-    setLocalSaved(!localSaved);
+  const handleSave = async () => {
+    const newSaved = !localSaved;
+    setLocalSaved(newSaved);
     onSave?.(story.id);
+
+    try {
+      await fetch('/api/user/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ storyId: story.id, action: newSaved ? 'save' : 'unsave' }),
+      });
+    } catch {
+      // Revert optimistic update on network failure
+      setLocalSaved(!newSaved);
+    }
   };
 
   const handleShare = () => {

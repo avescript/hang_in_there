@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import StoryCard from '../StoryCard';
 import { Story } from '@/lib/types/story';
 
@@ -55,15 +55,20 @@ describe('StoryCard', () => {
     expect(screen.getByText("Today's Story")).toBeInTheDocument();
   });
 
-  it('toggles save state when save button is clicked', () => {
+  it('toggles save state when save button is clicked', async () => {
     const onSave = jest.fn();
+    // Mock fetch so the save API call succeeds
+    global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => ({ saved: true }) } as Response);
+
     render(<StoryCard story={mockStory} onSave={onSave} />);
 
     const saveButton = screen.getByRole('button', { name: /save story/i });
     fireEvent.click(saveButton);
 
     expect(onSave).toHaveBeenCalledWith(mockStory.id);
-    expect(screen.getByRole('button', { name: /unsave story/i })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /unsave story/i })).toBeInTheDocument();
+    });
   });
 
   it('calls onShare when share button is clicked', () => {

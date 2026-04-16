@@ -94,8 +94,8 @@ The implementation follows a staged approach: core reading experience first, the
 - [x] 3. Checkpoint - Verify core reading experience
   - Ensure all tests pass, verify stories render correctly, ask the user if questions arise.
 
-- [ ] 4. User accounts and personalization
-  - [ ] 4.1 Create authentication UI components
+- [x] 4. User accounts and personalization
+  - [x] 4.1 Create authentication UI components
     - Implement AuthModal component with login/signup toggle
     - Add email/password form with validation
     - Add OAuth buttons (Google, Apple)
@@ -103,14 +103,14 @@ The implementation follows a staged approach: core reading experience first, the
     - Style with accessible form patterns
     - _Requirements: 5.4.1_
 
-  - [ ] 4.2 Implement user settings page
+  - [x] 4.2 Implement user settings page
     - Create settings page with notification preferences (on/off, time of day)
     - Add theme filter preferences
     - Add streak counter visibility toggle
     - Add account deletion option
     - _Requirements: 5.4.4, 5.4.6_
 
-  - [ ] 4.3 Create user settings API routes
+  - [x] 4.3 Create user settings API routes
     - Implement GET /api/user/settings endpoint
     - Implement PUT /api/user/settings endpoint
     - Validate settings input (time format, theme values)
@@ -122,7 +122,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Test that saving and retrieving settings returns equivalent object
     - _Requirements: 5.2.2, 5.4.4_
 
-  - [ ] 4.5 Implement saved stories functionality
+  - [x] 4.5 Implement saved stories functionality
     - Create saved stories API routes (POST /api/user/save, GET /api/user/saved)
     - Add Save button functionality to StoryCard
     - Create SavedStories page component
@@ -141,7 +141,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Test that unauthenticated users can read full story content
     - _Requirements: 5.4.1_
 
-  - [ ] 4.8 Implement reading streak tracking
+  - [x] 4.8 Implement reading streak tracking
     - Create streak calculation logic
     - Implement GET /api/user/streak endpoint
     - Track story reads in story_reads table
