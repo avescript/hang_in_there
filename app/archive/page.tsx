@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import StoryCard from '@/components/StoryCard';
 import { Story } from '@/lib/types/story';
@@ -25,6 +25,27 @@ interface Pagination {
 }
 
 export default function ArchivePage() {
+  return (
+    <Suspense fallback={
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+        <h1 className="text-3xl font-bold text-earth-900 mb-6">Story Archive</h1>
+        <div className="space-y-4">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="bg-white rounded-lg border border-cream-200 p-6 animate-pulse" aria-hidden="true">
+              <div className="h-4 bg-cream-200 rounded w-1/4 mb-3" />
+              <div className="h-6 bg-cream-200 rounded w-3/4 mb-2" />
+              <div className="h-4 bg-cream-200 rounded w-full" />
+            </div>
+          ))}
+        </div>
+      </main>
+    }>
+      <ArchiveContent />
+    </Suspense>
+  );
+}
+
+function ArchiveContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

@@ -202,7 +202,7 @@ The implementation follows a staged approach: core reading experience first, the
     - Test that random story probability is less than 1/N for consecutive requests
     - _Requirements: 5.5.4_
 
-- [ ] 6. Checkpoint - Verify discovery features
+- [x] 6. Checkpoint - Verify discovery features
   - Ensure all tests pass, verify search and filters work correctly, ask the user if questions arise.
 
 - [ ] 7. Push notifications
